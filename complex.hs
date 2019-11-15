@@ -17,6 +17,9 @@ mul (Complex r1 i1) (Complex r2 i2) = Complex (r1*r2-i1*i2) (r1*i2+r2*i1)
 instance Show Complex where
     show (Complex a b) = show a ++ " + " ++ show b ++ "*i"
 
+modulo :: Complex -> Float
+modulo (Complex re im) = re*re + im*im
+
 
 -- instance Num Complex where
 --    a + b = add a b 
