@@ -37,8 +37,13 @@ main = hspec $ do
         take 3 (projection (Complex 0 0) (add (Complex 1 1) )) `shouldBe` [(Complex 0 0), (Complex 1 1), (Complex 2 2)]
 
     describe "comparison" $ do
-      it "return true false" $ do
-        take 4 (comparison (projection (Complex 0 0) (add (Complex 1 1))) 4 ) `shouldBe` [True, True, False, False]
+      it "return true false" $
+        let result = take 4 $
+                      comparison 
+                        (projection (Complex 0 0) (add (Complex 1 1))) 
+                        4 
+            expected = [True, True, False, False]
+        in result `shouldBe` expected 
 
     describe "limit" $ do
       it "return limit" $ do
