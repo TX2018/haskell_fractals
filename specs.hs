@@ -65,36 +65,23 @@ main = hspec $ do
         }
         in cell_x conversion `shouldBe` 0.4
 
+    let conversion = Conversion {
+      screen_width = 10,
+      screen_height = 20,
+      origin_x = -2,
+      origin_y = 2,
+      real_width = 4,
+      real_height = 4 
+    } 
 
-    -- describe "real_x" $ do
-    --   it "returns the real coor of the pixel" $
-    --     do 
-    --       (real_x conversion 0 `shouldBe` (-2.0))
-    --       ((real_x conversion 9) - 1.6 < 0.001 `shouldBe` True)
-    --       ((real_x conversion 4) + 0.4 < 0.001 `shouldBe` True)
-    --       where 
-    --         conversion = Conversion {
-    --           screen_width = 10,
-    --           screen_height = 20,
-    --           origin_x = -2,
-    --           origin_y = 2,
-    --           real_width = 4,
-    --           real_height = 4 
-    --         } 
+    describe "real_x" $ do
+      it "returns the real coor of the pixel" $ do 
+        real_x conversion 0 `shouldBe` (-2.0)
+        (real_x conversion 9) - 1.6 < 0.001 `shouldBe` True
+        (real_x conversion 4) + 0.4 < 0.001 `shouldBe` True
         
     describe "screen_to_real" $ do
-      it "returns the complex number for screen coords" $
-        do 
-          ((screen_to_real conversion (0, 0)) `shouldBe` (Complex (-2) 2))
-          where 
-            conversion = Conversion {
-              screen_width = 10,
-              screen_height = 20,
-              origin_x = -2,
-              origin_y = 2,
-              real_width = 4,
-              real_height = 4
-            }
-
+      it "returns the complex number for screen coords" $ do 
+        (screen_to_real conversion (0, 0)) `shouldBe` (Complex (-2) 2)
 
 
